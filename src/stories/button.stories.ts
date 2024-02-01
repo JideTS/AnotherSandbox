@@ -2,9 +2,8 @@ import type { Meta, StoryObj } from '@storybook/angular';
 
 import { ButtonComponent } from './button.component';
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta: Meta<ButtonComponent> = {
-  title: 'Example/Button',
+  title: 'Sandox/Button',
   component: ButtonComponent,
   tags: ['autodocs'],
   render: (args: ButtonComponent) => ({
@@ -23,32 +22,55 @@ const meta: Meta<ButtonComponent> = {
 export default meta;
 type Story = StoryObj<ButtonComponent>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+
+export const Filled: Story = {
   args: {
-    kind: 'primary',
-    state: 'normal',
+    style: 'filled',
+    state: 'enabled',
     size: 'large',
-    label: 'Primary button',
+    label: 'Filled button',
+    iconUrl: './icon.svg',
+
   },
 };
 
-export const Secondary: Story = {
+export const Outlined: Story = {
   args: {
-    label: 'Button',
-  },
-};
-
-export const Large: Story = {
-  args: {
+    style: 'outlined',
+    state: 'enabled',
     size: 'large',
-    label: 'Button',
+    label: 'Outlined button',
+    iconUrl: './icon.svg',
   },
 };
 
-export const Small: Story = {
+export const Text: Story = {
   args: {
-    size: 'slim',
-    label: 'Button',
+    style: 'text',
+    state: 'enabled',
+    size: 'large',
+    label: 'Text button',
+    iconUrl: './icon.svg',
+  },
+};
+
+export const Elevated: Story = {
+  args: {
+    style: 'elevated',
+    state: 'enabled',
+    size: 'large',
+    label: 'Elevated button',
+    iconUrl: './icon.svg',
+  },
+};
+
+
+export const Tonal: Story = {
+  args: {
+    style: 'tonal',
+    state: 'enabled',
+    size: 'large',
+    label: 'Tonal button',
+    iconUrl: './icon.svg',
   },
 };

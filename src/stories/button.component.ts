@@ -1,66 +1,133 @@
-import { CommonModule } from '@angular/common';
-import { Component,  Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'sandbox-button',
+  selector: "sandbox-button",
   standalone: true,
   imports: [CommonModule],
   template: ` <button
-    type="button"
-    (click)="onClick.emit($event)"
-    [ngClass]="classes"
-    [ngStyle]="{ 'background-color': backgroundColor }"
-  >
-    {{ label }}
-  </button>`,
-  styleUrls: ['./button.css'],
+  type="button"
+  (click)="emitClickEvent()"
+  (mouseenter)="emitMouseenterEvent()"
+  (mouseleave)="emitMouseleaveEvent()"
+  (focus)="emitFocusEvent()"
+  [ngClass]="classes"
+  [ngStyle]="{ 'background-color': backgroundColor }"
+>
+  <ng-container *ngIf="iconPosition === 'left'">
+    <span *ngIf="icon" class="icon left-icon">{{ icon }}</span>
+    <img *ngIf="iconUrl && iconPosition === 'left'" class="icon left-icon" [src]="iconUrl" alt="Icon" />
+  </ng-container>
+  {{ label }}
+  <ng-container *ngIf="iconPosition === 'right'">
+    <span *ngIf="icon" class="icon right-icon">{{ icon }}</span>
+    <img *ngIf="iconUrl && iconPosition === 'right'" class="icon right-icon" [src]="iconUrl" alt="Icon" />
+  </ng-container>
+
+  <ng-container *ngIf="state === 'loading'">
+  <img class="spinner-icon" src="./spinner.svg" alt="Loading Spinner" />
+</ng-container>
+
+</button>`,
+  styleUrls: ["./button.css"],
 })
 export class ButtonComponent {
   /**
-   * What kind of button is it?
+   * What is the variant of this button?
    */
-  @Input() 
-  kind!: 'primary' | 'secondary' | 'outline' | 'text';
-
-    /**
-   * What is the state of this button?
-   */
-    @Input() 
-    state!: 'normal' | 'focused';
+  @Input()
+  style!: "filled" | "outlined" | "text" | "elevated" | "tonal";
 
   /**
-   * What background color to use
+   * What is the state of this button?
+   */
+  @Input()
+  state!: "enabled" | "hovered" | "focused" | "pressed" | "disabled" | "loading";
+
+  /**
+   * What background color to use?
    */
   @Input()
   backgroundColor?: string;
 
   /**
-   * How large should the button be?
+   * What is the size of the button?
    */
   @Input()
-  size!: 'slim' | 'medium' | 'large';
+  size!: "slim" | "medium" | "large";
 
   /**
-   * Button contents
+   * What is the label of the button
    *
    * @required
    */
   @Input()
-  label = 'Button';
+  label = "Button";
 
+    /**
+   * What is the icon URL (optional)?
+   */
 
+  @Input() iconUrl?: string;
+
+   /**
+   * What is the icon position?
+   */
+
+  @Input() iconPosition: "left" | "right" | "none"  = "none";
+
+   /**
+   * What is the loading icon URL (optional)?
+   */
+
+  @Input() loadingIconUrl?: string;
 
   /**
-   * Optional click handler
+   * Click handler
    */
   @Output()
-  onClick = new EventEmitter<Event>();
+  onClick = new EventEmitter<string>();
+
+  /**
+   * Mouse enter handler
+   */
+  @Output()
+  onMouseenter = new EventEmitter<string>();
+
+  /**
+   * Mouse leave handler
+   */
+  @Output()
+  onMouseleave = new EventEmitter<string>();
+
+  /**
+   * Focus handler
+   */
+  @Output()
+  onFocus = new EventEmitter<string>();
 
   public get classes(): string[] {
-    return ['sandbox-button', `sandbox-button--${this.size}`, `sandbox-button--${this.kind}`, `sandbox-button--${this.state}`];
+    return [
+      "sandbox-button",
+      `sandbox-button--${this.size}`,
+      `sandbox-button--${this.style}`,
+      `sandbox-button--${this.state}`,
+    ];
   }
 
+  emitClickEvent() {
+    this.onClick.emit("Button clicked");
+  }
 
+  emitMouseenterEvent() {
+    this.onMouseenter.emit("Mouse enter");
+  }
 
+  emitMouseleaveEvent() {
+    this.onMouseleave.emit("Mouse leave");
+  }
 
+  emitFocusEvent() {
+    this.onFocus.emit("Focus");
+  }
 }
