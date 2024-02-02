@@ -20,7 +20,7 @@
 .sandbox-button--filled {
   --button-fill: #fff;
   color: var(--button-fill);
-  background-color: #3498db;
+  background-color: #0a598f;
 }
 
 .sandbox-button--filled:hover {
@@ -29,7 +29,7 @@
 
 /* Outlined style */
 .sandbox-button--outlined {
-  --button-fill: #3498db;
+  --button-fill: #0a598f;
   color: var(--button-fill);
   background-color: #fff;
   border: 2px solid var(--button-fill);
@@ -37,12 +37,12 @@
 
 .sandbox-button--outlined:hover {
   color: #fff;
-  background-color: #3498db;
+  background-color: #0a598f;
 }
 
 /* Text style */
 .sandbox-button--text {
-  --button-fill: #3498db;
+  --button-fill: #0a598f;
   color: var(--button-fill);
   background-color: transparent;
 }
@@ -56,7 +56,7 @@
 .sandbox-button--elevated {
   --button-fill: #fff;
   color: var(--button-fill);
-  background-color: #3498db;
+  background-color: #0a598f;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
