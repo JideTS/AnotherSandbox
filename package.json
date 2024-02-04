@@ -6,7 +6,7 @@
     "start": "ng serve --disable-host-check",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "cypress run",
     "storybook": "ng run sandbox:storybook",
     "build-storybook": "ng run sandbox:build-storybook",
     "chromatic": "npx chromatic --project-token=chpt_2f93a549c572abe"
@@ -50,6 +50,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.6.10",
-    "typescript": "~5.1.6"
+    "typescript": "~5.1.6",
+    "cypress": "^8.7.0" 
   }
 }
+
+
+
